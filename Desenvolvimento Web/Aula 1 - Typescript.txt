@@ -1,0 +1,15 @@
+Typescript é um superset (conjunto de ferramentas) que adiciona tipagem estática ao JavaScript. É utilizado em front e back-end e, antes de ser executado, é compilado em JavaScript
+
+Detecta erros em tempo de desenvolvimento (antes de executar)
+
+
+
+Tipagem Estática 
+
+-> Cada variável pode ter um tipo definido, o que impede que valores inadequados sejam atribuídos a uma mesma variável, evitando erros como somar número com string
+
+
+
+Interfaces
+
+-> Usadas para definir a forma de objetos
