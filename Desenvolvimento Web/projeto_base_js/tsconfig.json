@@ -1,9 +1,14 @@
 {
- "extends": "@tsconfig/node24/tsconfig.json",
- "compilerOptions": {
-   "outDir": "./dist",
-   "rootDir": "./"
- },
- "include": ["**/*.ts"],
- "exclude": ["dist"]
+  "extends": "@tsconfig/node24/tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "jest"],
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["dist"]
 }
