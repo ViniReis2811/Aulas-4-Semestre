@@ -1,38 +1,33 @@
 import React, {Component} from 'react';
-import {StyleSheet, TextInput, Text, View} from 'react-native';
+import {StyleSheet, FlatList, Text, View} from 'react-native';
+import Pessoas from './src/Pessoas/Pessoas';
 
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {}
-      nome: ''
+    this.state = {
+      lista: [
+        {id: '1', nome: 'Matheus', idade: 50, email: 'matheus@matheus.com'},
+        {id: '2', nome: 'Thiago', idade: 33, email: 'thiago@thiago.com'},
+        {id: '3', nome: 'Lucas', idade: 20, email: 'lucas@lucas.com'},
+        {id: '4', nome: 'Henrique', idade: 58, email: 'henrique@henrique.com'},
+        {id: '5', nome: 'Thiago', idade: 33, email: 'thiago@thiago.com'},
+        {id: '6', nome: 'Lucas', idade: 20, email: 'lucas@lucas.com'},
+        {id: '7', nome: 'José', idade: 33, email: 'jose@jose.com'},
+        {id: '8', nome: 'Henrique', idade: 20, email: 'henrique@henrique.com'}
+      ]
     };
-
-    this.pegaNome = this.pegaNome.bind(this);
   }
 
-  pegaNome(texto){
-    if(texto.length > 0){
-      this.setState({nome: 'Bem vindo, ' + texto} + '!');
-    }else{
-      this.setState({nome: ''})
-    }
-  }
-
-  render() {
-    return (
+  render(){
+    return(
       <View style={styles.container}>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Digite seu nome"
-          underlineColorAndroid="transparent"
-          onChangeText={this.pegaNome}
-          />
-
-        <Text style={styles.texto}>{this.state.nome}</Text>
-
+      <FlatList
+      data={this.state.lista}
+      keyExtractor={(item) => item.id}
+      renderItem={ ({item}) => <Pessoas data={item} /> }
+      />
       </View>
     );
   }
@@ -42,18 +37,6 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
   },
-  input:{
-    height: 45,
-    borderWidth: 1,
-    borderColor: '#222',
-    margin: 10,
-    fontSize: 20,
-    padding: 10,
-  },
-  texto:{
-    textAlign: 'center',
-    fontSize: 25
-  }
 });
 
 export default App;
