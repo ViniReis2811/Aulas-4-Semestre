@@ -1,0 +1,21 @@
+const swaggerDefinition = {
+  openapi: "3.0.0",
+  info: {
+    title: "API de Usuários",
+    version: "1.0.0",
+    description: "CRUD de usuários com Node.js, Express e MySQL",
+  },
+  servers: [
+    {
+      url: "http://localhost:3000",
+      description: "Servidor local",
+    },
+  ],
+};
+
+const swaggerOptions = {
+  swaggerDefinition,
+  apis: ["./index.js"], // Onde os comentários JSDoc estão
+};
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions);

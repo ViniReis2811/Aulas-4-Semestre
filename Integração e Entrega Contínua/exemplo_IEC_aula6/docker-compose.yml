@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  cont-mysql-compose:
+    image: mysql:latest
+    container_name: cont-mysql-compose
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: usuarios
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD-SHELL","mysqladmin ping -h 127.0.0.1 -uroot -p${DB_PASSWORD:-root} --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  cont-api-compose:
+    image: img-api-compose
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      cont-mysql-compose:
+        condition: service_healthy
+    container_name: cont-api-compose
+    environment:
+      DB_HOST: cont-mysql-compose
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: usuarios
+      DB_PORT: 3306
+      APP_MESSAGE: Mensagem Teste enviada via environment
+      NODE_ENV: development
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8080:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+    depends_on:
+      - cont-mysql-compose      
