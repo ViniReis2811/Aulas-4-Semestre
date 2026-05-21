@@ -10,7 +10,7 @@ const CadastroScreen = async () => {
 
     const handleCadastro = async () => {
         try {
-            const response = await axios.post('http://192.168.1.249.3000/cadastro', {
+            const response = await axios.post('http://192.168.1.191:3000/cadastro', {
                 nome,
                 email,
                 senha,
